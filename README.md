@@ -17,7 +17,7 @@
 
 - GET /users/me — возвращает { email, password } пользователя
 
-- GET /articles — возвращает все статьи
+- GET /articles — возвращает все сохранённые пользователем статьи
 - POST /articles — создаёт статью с переданными в теле { keyword, title, text, date, source, link, image }
 - DELETE /articles/articleId — удаляет статью по идентификатору
 
