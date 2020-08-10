@@ -3,7 +3,7 @@ const Article = require('../models/article');
 const ForbiddenError = require('../libs/errors/forbidden-error');
 const NotFoundError = require('../libs/errors/not-found-error');
 const ValidationError = require('../libs/errors/validation-error');
-const { errorMessage } = require('../libs/custom-messages');
+const { errorMessage, successMessage } = require('../libs/custom-messages');
 
 const getArticles = async (req, res, next) => {
   try {
@@ -71,7 +71,7 @@ const deleteArticle = async (req, res, next) => {
       return next(new ForbiddenError(errorMessage.forbiddenDeleteArticle));
     }
     await Article.deleteOne({ _id: req.params.articleId });
-    res.json({ message: 'The article has been successfully removed' });
+    res.json({ message: successMessage.articleDeleted });
   } catch (e) {
     if (e.name === 'DocumentNotFoundError') {
       return next(new NotFoundError(errorMessage.articleNotFound));

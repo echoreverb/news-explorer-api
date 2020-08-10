@@ -11,6 +11,11 @@ const errorMessage = {
   notUniqueEmail: 'This email address is already being used',
 };
 
+const successMessage = {
+  articleDeleted: 'The article has been successfully removed',
+};
+
 module.exports = {
   errorMessage,
+  successMessage,
 };
