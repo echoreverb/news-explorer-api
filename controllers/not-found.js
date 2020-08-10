@@ -1,8 +1,8 @@
 const NotFoundError = require('../libs/errors/not-found-error');
-const { errormessage } = require('../libs/custom-messages');
+const { errorMessage } = require('../libs/custom-messages');
 
 const throwNotFound = (req, res, next) => {
-  next(new NotFoundError(errormessage.pageNotFound));
+  next(new NotFoundError(errorMessage.pageNotFound));
 };
 
 module.exports = { throwNotFound };

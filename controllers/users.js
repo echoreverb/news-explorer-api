@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
 const NotUniqueError = require('../libs/errors/not-unique-error');
-const { errormessage } = require('../libs/custom-messages');
+const { errorMessage } = require('../libs/custom-messages');
 
 const { NODE_ENV, JWT_SECRET } = process.env;
 
@@ -20,7 +20,7 @@ const createUser = async (req, res, next) => {
     });
   } catch (e) {
     if (e.code === 11000) {
-      return next(new NotUniqueError(errormessage.notUniqueEmail));
+      return next(new NotUniqueError(errorMessage.notUniqueEmail));
     }
     next(e);
   }

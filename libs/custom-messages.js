@@ -1,4 +1,4 @@
-const errormessage = {
+const errorMessage = {
   wrongCredentials: 'Wrong email or password',
   articleNotFound: 'This article cannot be found',
   userNotFound: 'User cannot be found',
@@ -12,5 +12,5 @@ const errormessage = {
 };
 
 module.exports = {
-  errormessage,
+  errorMessage,
 };

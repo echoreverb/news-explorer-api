@@ -3,7 +3,7 @@ const Article = require('../models/article');
 const ForbiddenError = require('../libs/errors/forbidden-error');
 const NotFoundError = require('../libs/errors/not-found-error');
 const ValidationError = require('../libs/errors/validation-error');
-const { errormessage } = require('../libs/custom-messages');
+const { errorMessage } = require('../libs/custom-messages');
 
 const getArticles = async (req, res, next) => {
   try {
@@ -63,18 +63,18 @@ const createArticle = async (req, res, next) => {
 // eslint-disable-next-line consistent-return
 const deleteArticle = async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.articleId)) {
-    return next(new ValidationError(errormessage.incorrectArticleId));
+    return next(new ValidationError(errorMessage.incorrectArticleId));
   }
   try {
     const found = await Article.findById({ _id: req.params.articleId }).select('+owner').orFail();
     if (req.user._id !== found.owner.toString()) {
-      return next(new ForbiddenError(errormessage.forbiddenDeleteArticle));
+      return next(new ForbiddenError(errorMessage.forbiddenDeleteArticle));
     }
     await Article.deleteOne({ _id: req.params.articleId });
     res.json({ message: 'The article has been successfully removed' });
   } catch (e) {
     if (e.name === 'DocumentNotFoundError') {
-      return next(new NotFoundError(errormessage.articleNotFound));
+      return next(new NotFoundError(errorMessage.articleNotFound));
     }
     next(e);
   }

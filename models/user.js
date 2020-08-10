@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const validatorCheck = require('validator');
 const AuthError = require('../libs/errors/auth-error');
-const { errormessage } = require('../libs/custom-messages');
+const { errorMessage } = require('../libs/custom-messages');
 
 const userSchema = new mongoose.Schema({
   email: {
@@ -32,11 +32,11 @@ const userSchema = new mongoose.Schema({
 userSchema.statics.findUserByCredentials = async function findUserByCredentials(email, password) {
   const user = await this.findOne({ email }).select('+password');
   if (!user) {
-    return Promise.reject(new AuthError(errormessage.wrongCredentials));
+    return Promise.reject(new AuthError(errorMessage.wrongCredentials));
   }
   const matched = await bcrypt.compare(password, user.password);
   if (!matched) {
-    return Promise.reject(new AuthError(errormessage.wrongCredentials));
+    return Promise.reject(new AuthError(errorMessage.wrongCredentials));
   }
   return user;
 };

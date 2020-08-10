@@ -1,5 +1,5 @@
 const { isCelebrate } = require('celebrate');
-const { errormessage } = require('../libs/custom-messages');
+const { errorMessage } = require('../libs/custom-messages');
 
 // eslint-disable-next-line no-unused-vars
 const errorHander = (err, req, res, next) => {
@@ -11,7 +11,7 @@ const errorHander = (err, req, res, next) => {
   const { statusCode = 500, message } = err;
   res.status(statusCode).send({
     message: statusCode === 500
-      ? errormessage.internalServerErr
+      ? errorMessage.internalServerErr
       : message,
   });
 };
