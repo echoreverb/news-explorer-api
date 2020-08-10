@@ -6,7 +6,7 @@
 
 - https://api.news-explorer.host
 - http://api.news-explorer.host
-- http://178.154.254.114
+- IP: 178.154.254.114
 
 - исходный код: https://github.com/echoreverb/news-explorer-api
 
@@ -15,10 +15,7 @@
 - POST /signup - создаёт профиль пользователя { email, password, name }
 - POST /signin - авторизирует пользователя { email, password }
 
-
 - GET /users/me — возвращает { email, password } пользователя
-
-
 
 - GET /articles — возвращает все статьи
 - POST /articles — создаёт статью с переданными в теле { keyword, title, text, date, source, link, image }
