@@ -6,7 +6,7 @@ const helmet = require('helmet');
 const limiter = require('./middlewares/rate-limiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHander = require('./middlewares/error-handler');
-const router = require('./routes/index');
+const router = require('./routes');
 const { PORT, DB_HOST } = require('./config');
 
 const app = express();
