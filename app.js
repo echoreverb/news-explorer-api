@@ -34,7 +34,6 @@ async function start() {
       useUnifiedTopology: true,
     });
     app.listen(PORT, () => {
-      /* eslint no-console: ["error", { allow: ["log", "error"] }] */
       console.log(`Server is running on port:${PORT}`);
     });
   } catch (e) {

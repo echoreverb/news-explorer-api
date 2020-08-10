@@ -18,7 +18,6 @@ const getArticles = async (req, res, next) => {
   }
 };
 
-// eslint-disable-next-line consistent-return
 const createArticle = async (req, res, next) => {
   const {
     keyword,
@@ -41,7 +40,7 @@ const createArticle = async (req, res, next) => {
       image,
       owner,
     });
-    res.json({
+    return res.json({
       data: {
         keyword: created.keyword,
         title: created.title,
@@ -56,11 +55,10 @@ const createArticle = async (req, res, next) => {
     if (e.name === 'ValidationError') {
       return next(new ValidationError(e.message));
     }
-    next(e);
+    return next(e);
   }
 };
 
-// eslint-disable-next-line consistent-return
 const deleteArticle = async (req, res, next) => {
   if (!mongoose.Types.ObjectId.isValid(req.params.articleId)) {
     return next(new ValidationError(errorMessage.incorrectArticleId));
@@ -71,12 +69,12 @@ const deleteArticle = async (req, res, next) => {
       return next(new ForbiddenError(errorMessage.forbiddenDeleteArticle));
     }
     await Article.deleteOne({ _id: req.params.articleId });
-    res.json({ message: successMessage.articleDeleted });
+    return res.json({ message: successMessage.articleDeleted });
   } catch (e) {
     if (e.name === 'DocumentNotFoundError') {
       return next(new NotFoundError(errorMessage.articleNotFound));
     }
-    next(e);
+    return next(e);
   }
 };
 

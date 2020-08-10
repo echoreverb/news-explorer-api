@@ -5,13 +5,12 @@ const NotUniqueError = require('../libs/errors/not-unique-error');
 const { errorMessage, successMessage } = require('../libs/custom-messages');
 const { JWT_SECRET } = require('../config');
 
-// eslint-disable-next-line consistent-return
 const createUser = async (req, res, next) => {
   const { email, password, name } = req.body;
   try {
     const hash = await bcrypt.hash(password, 10);
     const created = await User.create({ email, password: hash, name });
-    res.json({
+    return res.json({
       data: {
         email: created.email,
         name: created.name,
@@ -21,7 +20,7 @@ const createUser = async (req, res, next) => {
     if (e.code === 11000) {
       return next(new NotUniqueError(errorMessage.notUniqueEmail));
     }
-    next(e);
+    return next(e);
   }
 };
 
