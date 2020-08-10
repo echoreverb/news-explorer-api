@@ -13,6 +13,7 @@ const errorMessage = {
 
 const successMessage = {
   articleDeleted: 'The article has been successfully removed',
+  userAuthorized: 'Authorization successful',
 };
 
 module.exports = {
