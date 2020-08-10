@@ -1,7 +1,7 @@
 const { isCelebrate } = require('celebrate');
 const { errorMessage } = require('../libs/custom-messages');
 
-const errorHander = (err, req, res) => {
+const errorHander = (err, req, res, next) => {
   if (isCelebrate(err)) {
     const { statusCode = 400, message } = err;
     res.status(statusCode).send({ message });
@@ -13,6 +13,7 @@ const errorHander = (err, req, res) => {
       ? errorMessage.internalServerErr
       : message,
   });
+  next();
 };
 
 module.exports = errorHander;
