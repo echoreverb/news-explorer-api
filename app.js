@@ -7,8 +7,7 @@ const limiter = require('./middlewares/rate-limiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHander = require('./middlewares/error-handler');
 const router = require('./routes/index');
-
-const { PORT = 3000, DB_HOST = 'mongodb://localhost:27017/newsdb' } = process.env;
+const { PORT, DB_HOST } = require('./config');
 
 const app = express();
 
