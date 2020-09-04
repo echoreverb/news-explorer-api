@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
@@ -11,11 +12,25 @@ const { PORT, DB_HOST } = require('./config');
 
 const app = express();
 
+const whitelist = ['http://localhost:8080'];
+const corsOptions = {
+  origin(origin, callback) {
+    if (whitelist.includes(origin) || !origin) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+};
+
 app.use(limiter);
 app.use(helmet());
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(cors(corsOptions));
 
 app.use(requestLogger);
 
