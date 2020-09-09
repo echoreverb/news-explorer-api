@@ -49,6 +49,7 @@ const createArticle = async (req, res, next) => {
         source: created.source,
         link: created.link,
         image: created.image,
+        id: created._id,
       },
     });
   } catch (e) {

@@ -10,8 +10,13 @@ const JWT_SECRET = NODE_ENV === 'production'
 
 const PORT = process.env.PORT || 3000;
 
+const CORS_WHITELIST = NODE_ENV === 'production'
+  ? ['https://echoreverb.github.io/news-explorer-frontend/']
+  : ['http://localhost:8080'];
+
 module.exports = {
   DB_HOST,
   JWT_SECRET,
   PORT,
+  CORS_WHITELIST,
 };

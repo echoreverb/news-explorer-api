@@ -4,14 +4,13 @@ const { errorMessage } = require('../libs/custom-messages');
 const { JWT_SECRET } = require('../config');
 
 const auth = async (req, res, next) => {
-  const { authorization } = req.headers;
-  if (!authorization || !authorization.startsWith('Bearer ')) {
+  const cookie = req.cookies.jwt;
+  if (!cookie) {
     return next(new AuthError(errorMessage.notAuthorized));
   }
-  const token = authorization.replace('Bearer ', '');
   let payload;
   try {
-    payload = jwt.verify(token, JWT_SECRET);
+    payload = jwt.verify(cookie, JWT_SECRET);
   } catch (e) {
     return next(new AuthError(errorMessage.notAuthorized));
   }
