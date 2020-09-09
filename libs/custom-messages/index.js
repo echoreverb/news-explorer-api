@@ -27,11 +27,13 @@ const errorMessageEn = {
 const successMessage = {
   articleDeleted: 'Статья успешно удалена',
   userAuthorized: 'Вход выполнен успешно',
+  userLoggedOut: 'Выход выполнен успешно',
 };
 
 const successMessageEn = {
   articleDeleted: 'The article has been successfully removed',
   userAuthorized: 'Authorization successful',
+  userLoggedOut: 'Logout successful',
 };
 
 module.exports = {

@@ -1,6 +1,11 @@
 const router = require('express').Router();
 const { celebrate, Joi } = require('celebrate');
-const { createUser, login, getUser } = require('../controllers/users');
+const {
+  createUser,
+  login,
+  logout,
+  getUser,
+} = require('../controllers/users');
 const auth = require('../middlewares/auth');
 
 router.post('/signup', celebrate({
@@ -17,6 +22,8 @@ router.post('/signin', celebrate({
     password: Joi.string().required().min(8),
   }),
 }), login);
+
+router.post('/logout', logout);
 
 router.get('/users/me', auth, getUser);
 
