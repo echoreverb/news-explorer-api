@@ -42,7 +42,12 @@ const login = async (req, res, next) => {
 };
 
 const logout = (req, res) => {
-  res.cookie('jwt', '', { httpOnly: true, maxAge: 0 });
+  res.cookie('jwt', '', {
+    sameSite: 'none',
+    secure: true,
+    httpOnly: true,
+    maxAge: 0,
+  });
   res.status(201).send({ message: successMessage.userLoggedOut });
 };
 
