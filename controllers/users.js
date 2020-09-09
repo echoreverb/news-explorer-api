@@ -29,7 +29,12 @@ const login = async (req, res, next) => {
   try {
     const user = await User.findUserByCredentials(email, password);
     const token = jwt.sign({ _id: user._id }, JWT_SECRET, { expiresIn: '7d' });
-    res.cookie('jwt', token, { httpOnly: true, maxAge: (7 * 24 * 3600000) });
+    res.cookie('jwt', token, {
+      sameSite: 'none',
+      secure: true,
+      httpOnly: true,
+      maxAge: (7 * 24 * 3600000),
+    });
     res.status(201).send({ message: successMessage.userAuthorized });
   } catch (e) {
     next(e);
