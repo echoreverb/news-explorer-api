@@ -9,11 +9,11 @@ const limiter = require('./middlewares/rate-limiter');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const errorHander = require('./middlewares/error-handler');
 const router = require('./routes');
-const { PORT, DB_HOST } = require('./config');
+const { PORT, DB_HOST, CORS_WHITELIST } = require('./config');
 
 const app = express();
 
-const whitelist = ['http://localhost:8080'];
+const whitelist = CORS_WHITELIST;
 const corsOptions = {
   origin(origin, callback) {
     if (whitelist.includes(origin) || !origin) {
