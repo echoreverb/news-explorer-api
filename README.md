@@ -1,6 +1,9 @@
 # News-Explorer API
 
 Эта работа - бэкенд часть дипломного проекта News-Explorer - сервиса для поиска и сохранения новостей.
+<br />
+<br />
+Текущая версия: v0.0.3
 
 ## Ссылки
 
@@ -48,4 +51,3 @@ npm run dev
 - валидация данных: [Joi](https://hapi.dev/module/joi/)+[celebrate](https://github.com/arb/celebrate), [validator](https://www.npmjs.com/package/validator)
 - логгирование: [Winston](https://www.npmjs.com/package/winston)
 - размещение: [Яндекс.Облако](https://cloud.yandex.ru/), [Freenom](https://www.freenom.com), [Certbot](https://certbot.eff.org/), [pm2](https://pm2.keymetrics.io), [nginx](https://nginx.org)
-
