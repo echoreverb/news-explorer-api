@@ -11,7 +11,7 @@ const JWT_SECRET = NODE_ENV === 'production'
 const PORT = process.env.PORT || 3000;
 
 const CORS_WHITELIST = NODE_ENV === 'production'
-  ? ['https://echoreverb.github.io']
+  ? ['https://echoreverb.github.io', 'https://news-explorer.host', 'http://news-explorer.host', 'http://178.154.254.114']
   : ['http://localhost:8080'];
 
 module.exports = {

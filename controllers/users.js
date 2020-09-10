@@ -35,6 +35,11 @@ const login = async (req, res, next) => {
       httpOnly: true,
       maxAge: (7 * 24 * 3600000),
     });
+    res.cookie('sjwt', token, {
+      secure: true,
+      httpOnly: true,
+      maxAge: (7 * 24 * 3600000),
+    });
     res.status(201).send({ message: successMessage.userAuthorized });
   } catch (e) {
     next(e);
